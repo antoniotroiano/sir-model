@@ -5,6 +5,10 @@ public class ValuesSIR {
     Double transmissionRate;
     Double recoveryRate;
 
+    public ValuesSIR() {
+
+    }
+
     public ValuesSIR(Double transmissionRate, Double recoveryRate) {
         this.transmissionRate = transmissionRate;
         this.recoveryRate = recoveryRate;
