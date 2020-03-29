@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIR-Model</title>
+    <script src="../bower_components/chart.js/dist/Chart.js"></script>
+    <link href="../bower_components/chart.js/dist/Chart.css" rel="stylesheet" type="text/css">
+<body>
+<canvas id="myChart"></canvas>
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'Susceptible',
+                borderColor: '#4185EA',
+                fill: false,
+                pointRadius: 5,
+                data: [0, 10, 5, 2, 20, 22, 5]
+            }, {
+                label: 'Infected',
+                borderColor: '#FA0206',
+                fill: false,
+                pointRadius: 5,
+                data: [0, 24, 2, 1, 34, 13, 4]
+            }, {
+                label: 'Recovered',
+                borderColor: '#1BCD04',
+                fill: false,
+                pointRadius: 5,
+                data: [0, 15, 9, 4, 20, 20, 1],
+                showLine: true
+            }]
+        },
+        options: {
+            tooltips: {
+                mode: 'point'
+            },
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            legend: {
+                display: true,
+                position: 'bottom',
+                align: 'center',
+                labels: {
+                    boxWidth: 60,
+                    fontColor: 'rgb(000, 000, 000)'
+                }
+            },
+            title: {
+                display: true,
+                fontSize: 20,
+                padding: 15,
+                fontColor: '#69C8C8',
+                text: 'SIR Model'
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
