@@ -39,7 +39,7 @@ public class SIRModelController {
         return "sir-model";
     }
 
-    @PostMapping
+    @PostMapping("/newCalculation")
     public String postDataToChar(@Valid ValuesSIR values, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "sir-model";

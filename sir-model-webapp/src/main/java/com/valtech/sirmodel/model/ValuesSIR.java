@@ -6,7 +6,6 @@ public class ValuesSIR {
     Double recoveryRate;
 
     public ValuesSIR() {
-
     }
 
     public ValuesSIR(Double transmissionRate, Double recoveryRate) {
@@ -28,13 +27,5 @@ public class ValuesSIR {
 
     public void setRecoveryRate(Double recoveryRate) {
         this.recoveryRate = recoveryRate;
-    }
-
-    @Override
-    public String toString() {
-        return "ValuesSIR{" +
-                "transmissionRate=" + transmissionRate +
-                ", recoveryRate=" + recoveryRate +
-                '}';
     }
 }
