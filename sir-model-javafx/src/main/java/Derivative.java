@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Derivative {
-
+    //logger lombok für den output
     public Map<String, List<Double>> calculation(double susStart, double infStart, double reStart, double transRate, double reRate, int maxT) {
 
         final String RESET = "\033[0m";
