@@ -7,10 +7,10 @@ public class Derivative {
 
     public Map<String, List<Double>> calculation(double susStart, double infStart, double reStart, double transRate, double reRate, int maxT) {
 
-        String RESET = "\033[0m";
-        String BLUE = "\033[0;34m";
-        String RED = "\033[0;31m";
-        String GREEN = "\033[0;32m";
+        final String RESET = "\033[0m";
+        final String BLUE = "\033[0;34m";
+        final String RED = "\033[0;31m";
+        final String GREEN = "\033[0;32m";
 
         double susceptible;
         double infected;
@@ -43,8 +43,7 @@ public class Derivative {
             infList.add(infected);
             reList.add(recovered);
 
-            int day = i;
-            System.out.println("Day " + day++ + ": Susceptible: " + BLUE + susList.get(i).doubleValue() + RESET
+            System.out.println("Day " + i + ": Susceptible: " + BLUE + susList.get(i).doubleValue() + RESET
                     + " Infected: " + RED + infList.get(i).doubleValue() + RESET + " Recovered: " + GREEN
                     + reList.get(i).doubleValue() + RESET);
         }
