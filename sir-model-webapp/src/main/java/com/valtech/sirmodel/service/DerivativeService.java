@@ -1,12 +1,15 @@
 package com.valtech.sirmodel.service;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Derivative {
-    //logger lombok für den output
+@Slf4j
+public class DerivativeService {
+
     public Map<String, List<Double>> calculation(double susStart, double infStart, double reStart, double transRate, double reRate, int maxT) {
 
         final String RESET = "\033[0m";
@@ -45,11 +48,10 @@ public class Derivative {
             infList.add(infected);
             reList.add(recovered);
 
-            System.out.println("Day " + i + ": Susceptible: " + BLUE + susList.get(i).doubleValue() + RESET
+            log.info("Day " + i + ": Susceptible: " + BLUE + susList.get(i).doubleValue() + RESET
                     + " Infected: " + RED + infList.get(i).doubleValue() + RESET + " Recovered: " + GREEN
                     + reList.get(i).doubleValue() + RESET);
         }
-        System.out.println();
 
         Map<String, List<Double>> map = new HashMap<>();
         map.put("Susceptible", susList);
@@ -57,8 +59,5 @@ public class Derivative {
         map.put("Recovered", reList);
 
         return map;
-        /*return Stream.of(susList, infList, reList)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());*/
     }
 }

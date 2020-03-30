@@ -5,8 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>coronacurve</artifactId>
+    <artifactId>sir-model</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>sir-model-webapp</module>
+        <module>sir-model-javafx</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.2.RELEASE</version>
+    </parent>
 
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
@@ -14,6 +25,7 @@
         <commons-math3.version>3.6.1</commons-math3.version>
         <assertj.version>3.11.1</assertj.version>
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
+        <javafx.version>14</javafx.version>
     </properties>
 
     <dependencies>
@@ -26,13 +38,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>14</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>14</version>
+            <version>${javafx.version}</version>
         </dependency>
 
         <!--Test-->

@@ -19,9 +19,9 @@ import java.util.List;
 public class SIRModelApplication extends Application {
 
     private static Derivative derivative = new Derivative();
-    List<Double> resultSusceptible = new ArrayList<>();
-    List<Double> resultInfected = new ArrayList<>();
-    List<Double> resultRecovered = new ArrayList<>();
+    private static List<Double> resultSusceptible = new ArrayList<>();
+    private static List<Double> resultInfected = new ArrayList<>();
+    private static List<Double> resultRecovered = new ArrayList<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -84,24 +84,6 @@ public class SIRModelApplication extends Application {
         lineChart.getData().addAll(seriesSusceptible, seriesInfected, seriesRecovered);
         lineChart.setMinHeight(600);
 
-        /*Label transmissionLabel = new Label("Transmission rate: ");
-        Label transmissionValue = new Label("-");
-
-        Slider transmissionSlider = new Slider(1, 5, 2);
-        transmissionSlider.setShowTickLabels(true);
-        transmissionSlider.setShowTickMarks(true);
-
-        transmissionSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                transmissionValue.textProperty().setValue(String.valueOf(t1.intValue()));
-                //transmissionValue.setText("V "+t1.intValue());
-            }
-        });
-
-        vBox.setMargin(transmissionLabel, new Insets(10, 10, 10, 10));
-        vBox.setMargin(transmissionSlider, new Insets(10, 10, 10, 10));
-        vBox.setMargin(transmissionValue, new Insets(10, 10, 10, 10));*/
         vBox.setMargin(lineChart, new Insets(10, 10, 10, 10));
 
         ObservableList list = vBox.getChildren();
