@@ -1,14 +1,14 @@
 package com.valtech.sirmodel.model;
 
-public class ValuesSIR {
+public class Data {
 
     Double transmissionRate;
     Double recoveryRate;
 
-    public ValuesSIR() {
+    public Data() {
     }
 
-    public ValuesSIR(Double transmissionRate, Double recoveryRate) {
+    public Data(Double transmissionRate, Double recoveryRate) {
         this.transmissionRate = transmissionRate;
         this.recoveryRate = recoveryRate;
     }

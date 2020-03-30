@@ -7,18 +7,16 @@
 <body>
 
 <section>
-
-    <form method="post" th:action="@{/sir-model}" th:object="${values}">
-
+    <form method="post" th:action="@{/sir-model/newCalculation}" th:object="${values}">
         <label>Transmission rate:</label>
         <input id="transmissionRate" th:field="*{transmissionRate}" type="text">
-
         <lable>Recovery rate:</lable>
         <input id="recoveryRate" th:field="*{recoveryRate}" type="text">
-
         <button type="submit">Send</button>
     </form>
 
+    <label>Chart with transmission rate =</label>
+    <label th:text="${transmissionRate}" type="text"/>
 </section>
 
 <canvas id="myChart"></canvas>

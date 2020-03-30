@@ -7,34 +7,34 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class ValuesSIRTest {
+public class DataTest {
 
-    private ValuesSIR valuesSIR = new ValuesSIR();
+    private Data data = new Data();
 
     @BeforeEach
     public void setUp() {
-        valuesSIR.setTransmissionRate(1.0);
-        valuesSIR.setRecoveryRate(2.0);
+        data.setTransmissionRate(1.0);
+        data.setRecoveryRate(2.0);
     }
 
     @Test
     public void createdValuesSIR() {
-        assertThat(valuesSIR).isInstanceOf(ValuesSIR.class);
+        assertThat(data).isInstanceOf(Data.class);
     }
 
     @Test
     public void hasTransmissionRate() {
-        assertThat(valuesSIR.getTransmissionRate()).isEqualTo(1.0);
+        assertThat(data.getTransmissionRate()).isEqualTo(1.0);
     }
 
     @Test
     public void hasRecoveryRate() {
-        assertThat(valuesSIR.getRecoveryRate()).isEqualTo(2.0);
+        assertThat(data.getRecoveryRate()).isEqualTo(2.0);
     }
 
     @Test
     public void constructorTest() {
-        ValuesSIR valuesSIRTwo = new ValuesSIR(1.0, 2.0);
-        assertThat(valuesSIRTwo).isInstanceOf(ValuesSIR.class);
+        Data dataTwo = new Data(1.0, 2.0);
+        assertThat(dataTwo).isInstanceOf(Data.class);
     }
 }

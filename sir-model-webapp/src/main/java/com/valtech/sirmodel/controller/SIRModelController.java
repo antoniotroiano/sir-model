@@ -1,6 +1,6 @@
 package com.valtech.sirmodel.controller;
 
-import com.valtech.sirmodel.model.ValuesSIR;
+import com.valtech.sirmodel.model.Data;
 import com.valtech.sirmodel.service.Derivative;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,40 +22,42 @@ public class SIRModelController {
     List<Double> resultRecovered;
 
     @GetMapping
-    public String showSIRModel(ValuesSIR values, Model model) {
+    public String showSIRModel(Data data, Model model) {
 
-        resultSusceptible =
-                derivative.calculation(0.99, 0.01, 0, 3, 0.23, 30).get("Susceptible");
-        resultInfected =
-                derivative.calculation(0.99, 0.01, 0, 3, 0.23, 30).get("Infected");
-        resultRecovered =
-                derivative.calculation(0.99, 0.01, 0, 3, 0.23, 30).get("Recovered");
+        Data dataInitial = new Data();
+        dataInitial.setTransmissionRate(1.5);
 
-        model.addAttribute("values", new ValuesSIR());
-        model.addAttribute("resultSusceptible", resultSusceptible);
-        model.addAttribute("resultInfected", resultInfected);
-        model.addAttribute("resultRecovered", resultRecovered);
+        if (data.getTransmissionRate() != null) {
+            getResult(data, model);
+            return "sir-model";
+        }
+        getResult(dataInitial, model);
 
         return "sir-model";
     }
 
     @PostMapping("/newCalculation")
-    public String postDataToChar(@Valid ValuesSIR values, BindingResult bindingResult, Model model) {
+    public String postDataToChar(@Valid Data data, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "sir-model";
         }
-        resultSusceptible =
-                derivative.calculation(0.99, 0.01, 0, values.getTransmissionRate(), 0.5, 30).get("Susceptible");
-        resultInfected =
-                derivative.calculation(0.99, 0.01, 0, values.getTransmissionRate(), 0.5, 30).get("Infected");
-        resultRecovered =
-                derivative.calculation(0.99, 0.01, 0, values.getTransmissionRate(), 0.5, 30).get("Recovered");
+        getResult(data, model);
 
-        model.addAttribute("values", new ValuesSIR());
+        return "sir-model";
+    }
+
+    private void getResult(Data data, Model model) {
+        resultSusceptible =
+                derivative.calculation(0.99, 0.01, 0, data.getTransmissionRate(), 0.23, 30).get("Susceptible");
+        resultInfected =
+                derivative.calculation(0.99, 0.01, 0, data.getTransmissionRate(), 0.23, 30).get("Infected");
+        resultRecovered =
+                derivative.calculation(0.99, 0.01, 0, data.getTransmissionRate(), 0.23, 30).get("Recovered");
+
+        model.addAttribute("transmissionRate", data.getTransmissionRate());
+        model.addAttribute("values", new Data());
         model.addAttribute("resultSusceptible", resultSusceptible);
         model.addAttribute("resultInfected", resultInfected);
         model.addAttribute("resultRecovered", resultRecovered);
-
-        return "sir-model";
     }
 }
