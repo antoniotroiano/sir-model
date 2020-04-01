@@ -36,8 +36,7 @@ public class DerivativeService {
         for (int i = 0; i <= maxT; i++) {
 
             derivativeS = -transRate * susList.get(i) * infList.get(i);
-            derivativeI = transRate * susList.get(i) * infList.get(i) - reRate
-                    * infList.get(i);
+            derivativeI = transRate * susList.get(i) * infList.get(i) - reRate * infList.get(i);
             derivativeR = reRate * infList.get(i);
 
             susceptible = susList.get(i) + derivativeS * 1;
