@@ -12,7 +12,7 @@ public class DerivativeService {
 
     public Map<String, List<Double>> calculation(double susStart, double infStart, double reStart, double transRate, double reRate, int maxT) {
 
-        final String RESET = "\033[0m";
+        final String WHITE = "\033[0;37m";
         final String BLUE = "\033[0;34m";
         final String RED = "\033[0;31m";
         final String GREEN = "\033[0;32m";
@@ -35,22 +35,21 @@ public class DerivativeService {
 
         for (int i = 0; i <= maxT; i++) {
 
-            derivativeS = -transRate * susList.get(i).doubleValue() * infList.get(i).doubleValue();
-            derivativeI = transRate * susList.get(i).doubleValue() * infList.get(i).doubleValue() - reRate
-                    * infList.get(i).doubleValue();
+            derivativeS = -transRate * susList.get(i) * infList.get(i);
+            derivativeI = transRate * susList.get(i) * infList.get(i) - reRate
+                    * infList.get(i);
             derivativeR = reRate * infList.get(i);
 
-            susceptible = susList.get(i).doubleValue() + derivativeS * 1;
-            infected = infList.get(i).doubleValue() + derivativeI * 1;
-            recovered = reList.get(i).doubleValue() + derivativeR * 1;
+            susceptible = susList.get(i) + derivativeS * 1;
+            infected = infList.get(i) + derivativeI * 1;
+            recovered = reList.get(i) + derivativeR * 1;
 
             susList.add(susceptible);
             infList.add(infected);
             reList.add(recovered);
 
-            log.info("Day " + i + ": Susceptible: " + BLUE + susList.get(i).doubleValue() + RESET
-                    + " Infected: " + RED + infList.get(i).doubleValue() + RESET + " Recovered: " + GREEN
-                    + reList.get(i).doubleValue() + RESET);
+            log.info("Day " + i + WHITE + ": Susceptible: " + BLUE + susList.get(i) + WHITE + " Infected: " + RED
+                    + infList.get(i) + WHITE + " Recovered: " + GREEN + reList.get(i) + WHITE);
         }
 
         Map<String, List<Double>> map = new HashMap<>();

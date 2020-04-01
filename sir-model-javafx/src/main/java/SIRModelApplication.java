@@ -36,8 +36,8 @@ public class SIRModelApplication extends Application {
         Label labelTransmissionRate = new Label("Transmission rate: ");
         TextField textTransmissionRate = new TextField();
         textTransmissionRate.setText("1.0");
-        Button button = new Button("Click to get value");
-        Button buttonClean = new Button("Clear");
+        Button button = new Button("Generate chart");
+        Button buttonClean = new Button("Clear chart");
 
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
@@ -47,7 +47,7 @@ public class SIRModelApplication extends Application {
         yAxis.setAnimated(true);
 
         final LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle("SIR Model for Corona");
+        lineChart.setTitle("SIR Model for pandemics");
         lineChart.getXAxis().setAutoRanging(true);
         lineChart.getYAxis().setAutoRanging(true);
 

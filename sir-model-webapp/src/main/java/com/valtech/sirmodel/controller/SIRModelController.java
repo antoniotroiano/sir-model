@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("sir-model")
 public class SIRModelController {
+
+    private static final String SIR_MODEL = "sir-model";
 
     DerivativeService derivativeService = new DerivativeService();
     List<Double> resultSusceptible;
@@ -30,16 +31,16 @@ public class SIRModelController {
 
         if (data.getTransmissionRate() != null && data.getRecoveryRate() != null) {
             getResult(data, model);
-            return "sir-model";
+            return SIR_MODEL;
         }
         getResult(dataInitial, model);
-        return "sir-model";
+        return SIR_MODEL;
     }
 
     @PostMapping("/newCalculation")
     public String postDataToChar(Data data, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "sir-model";
+            return SIR_MODEL;
         }
         if (data.getTransmissionRate() == null || data.getRecoveryRate() == null) {
             return showSIRModel(data, model);

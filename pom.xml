@@ -26,6 +26,7 @@
         <assertj.version>3.11.1</assertj.version>
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <javafx.version>14</javafx.version>
+        <lombok.version>1.18.4</lombok.version>
     </properties>
 
     <dependencies>
@@ -39,6 +40,13 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>${javafx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <version>${lombok.version}</version>
         </dependency>
 
         <!--Test-->

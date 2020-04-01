@@ -24,8 +24,6 @@
 <canvas id="myChart"></canvas>
 
 <script>
-    console.log('test');
-
     const sus = [[${resultSusceptible}]];
     const inf = [[${resultInfected}]];
     const rec = [[${resultRecovered}]];
@@ -34,11 +32,6 @@
     for (let i = 1; i <= sus.length; i++) {
         days.push(i);
     }
-    console.log(days);
-
-    console.log(sus);
-    console.log(inf);
-    console.log(rec);
 
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {

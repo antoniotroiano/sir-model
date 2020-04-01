@@ -2,12 +2,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Derivative {
-    //logger lombok für den output
+
+    private static final Logger log = Logger.getLogger("Derivative");
+
     public Map<String, List<Double>> calculation(double susStart, double infStart, double reStart, double transRate, double reRate, int maxT) {
 
-        final String RESET = "\033[0m";
+        final String WHITE = "\033[0;37m";
         final String BLUE = "\033[0;34m";
         final String RED = "\033[0;31m";
         final String GREEN = "\033[0;32m";
@@ -30,24 +33,22 @@ public class Derivative {
 
         for (int i = 0; i <= maxT; i++) {
 
-            derivativeS = -transRate * susList.get(i).doubleValue() * infList.get(i).doubleValue();
-            derivativeI = transRate * susList.get(i).doubleValue() * infList.get(i).doubleValue() - reRate
-                    * infList.get(i).doubleValue();
+            derivativeS = -transRate * susList.get(i) * infList.get(i);
+            derivativeI = transRate * susList.get(i) * infList.get(i) - reRate
+                    * infList.get(i);
             derivativeR = reRate * infList.get(i);
 
-            susceptible = susList.get(i).doubleValue() + derivativeS * 1;
-            infected = infList.get(i).doubleValue() + derivativeI * 1;
-            recovered = reList.get(i).doubleValue() + derivativeR * 1;
+            susceptible = susList.get(i) + derivativeS * 1;
+            infected = infList.get(i) + derivativeI * 1;
+            recovered = reList.get(i) + derivativeR * 1;
 
             susList.add(susceptible);
             infList.add(infected);
             reList.add(recovered);
 
-            System.out.println("Day " + i + ": Susceptible: " + BLUE + susList.get(i).doubleValue() + RESET
-                    + " Infected: " + RED + infList.get(i).doubleValue() + RESET + " Recovered: " + GREEN
-                    + reList.get(i).doubleValue() + RESET);
+            log.info(WHITE + "Day " + i + ": Susceptible: " + BLUE + susList.get(i) + WHITE + " Infected: " + RED
+                    + infList.get(i) + WHITE + " Recovered: " + GREEN + reList.get(i) + WHITE);
         }
-        System.out.println();
 
         Map<String, List<Double>> map = new HashMap<>();
         map.put("Susceptible", susList);
@@ -55,8 +56,5 @@ public class Derivative {
         map.put("Recovered", reList);
 
         return map;
-        /*return Stream.of(susList, infList, reList)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());*/
     }
 }
