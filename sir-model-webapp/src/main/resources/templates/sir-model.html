@@ -7,18 +7,22 @@
 <body>
 
 <section>
+    <a href="/statisticsCorona/world">Statistics of corona world</a>
+    <a href="/statisticsCorona/germany">Statistics of corona germany</a>
     <form method="post" th:action="@{/sir-model/newCalculation}" th:object="${values}">
         <label>Transmission rate:</label>
+        <label for="transmissionRate"></label>
         <input id="transmissionRate" th:field="*{transmissionRate}" type="text">
         <lable>Recovery rate:</lable>
+        <label for="recoveryRate"></label>
         <input id="recoveryRate" th:field="*{recoveryRate}" type="text">
         <button type="submit">Send</button>
     </form>
 
     <label>Chart with transmission rate =</label>
-    <label th:text="${transmissionRate}" type="text"/>
+    <label th:text="${transmissionRate}" type="text"></label>
     <label>Chart with recovery rate =</label>
-    <label th:text="${recoveryRate}" type="text"/>
+    <label th:text="${recoveryRate}" type="text"></label>
 </section>
 
 <canvas id="myChart"></canvas>

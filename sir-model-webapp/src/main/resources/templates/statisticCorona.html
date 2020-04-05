@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistics of corona worldwide</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2/dist/Chart.min.js"></script>
+</head>
+<body>
+
+<section>
+    <label>Confirmed</label>
+    <label th:text="${confirmed}"></label>
+    <label>Recovered</label>
+    <label th:text="${recovered}"></label>
+    <label>Deaths</label>
+    <label th:text="${deaths}"></label>
+    <label>Last update</label>
+    <label th:text="${lastUpdate}"></label>
+</section>
+
+<canvas id="dataWorld"></canvas>
+<script>
+    const confirmed = [[${confirmedList}]];
+
+    const today = new Date();
+    const date = today.getDate() + '-' + today.getMonth() + '-' + today.getFullYear();
+
+    let days = [];
+    for (let i = 1; i <= confirmed.length; i++) {
+        days.push(date);
+    }
+
+    const ctx = document.getElementById('dataWorld').getContext('2d');
+    const dataWorld = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: days,
+            datasets: [{
+                label: 'Confirmed',
+                backgroundColor: 'rgb(147,190,234, 0.6)',
+                borderWidth: 1,
+                borderColor: 'rgb(13,23,234)',
+                hoverBackgroundColor: 'rgb(147,190,234, 0.7)',
+                barPercentage: 0.9,
+                barThickness: 25,
+                maxBarThickness: 30,
+                minBarLength: 100,
+                data: confirmed
+            }]
+        },
+        options: {
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            legend: {
+                display: true,
+                position: 'bottom',
+                align: 'center',
+                labels: {
+                    boxWidth: 40,
+                    fontColor: 'rgb(000, 000, 000)'
+                }
+            },
+            title: {
+                display: true,
+                fontSize: 20,
+                padding: 15,
+                fontColor: '#69C8C8',
+                text: 'Confirmed world'
+            }
+        }
+    });
+</script>
+</body>
+</html>
