@@ -30,7 +30,6 @@ public class StatisticService {
     }
 
     public Optional<DataWorld> findDataWorldByLastUpdate(String lastUpdate) {
-        log.info("Find last update: {}", lastUpdate);
         return coronaWorldRepository.findDataWorldByLastUpdate(lastUpdate);
     }
 
